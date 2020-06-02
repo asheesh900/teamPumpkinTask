@@ -64,25 +64,38 @@ def upload_file():
         cursor.close()
         return {"message": "Image uploaded successfully", "id": decoded_data["id"], "img_url": img_url}
 
-# GET method for contributor
-@app.route('/download/report', methods = ['GET'])
-def downloadReport():
+# GET method according to type of user
+@app.route('/records', methods = ['GET'])
+def getRecords():
     decoded_data = token_decoder()
     id = decoded_data['id']
+    query1 = """SELECT user_type FROM users WHERE id = %s"""
+    query2 = """SELECT * FROM images"""
+    query3 = """SELECT * FROM images WHERE contributor_id = %s"""
     
     cursor = mysql.connection.cursor()
-    cursor.execute(
-        """SELECT * FROM images WHERE contributor_id = %s""", (id,)
-    )
-    result = cursor.fetchall()
+    cursor.execute(query1, (id,))
+    result1 = cursor.fetchall()
+    user_type = result1[0]['user_type']
+
+    if user_type is 'normal user':
+        cursor.execute(query2)
+        result2 = cursor.fetchall()
+        cursor.close()
+
+        image_record = list()
+        for item in result2:
+            image_record.append(item)
+        return {"user_type": user_type, "image_record": image_record}
+
+    cursor.execute(query3, (id,))
+    result2 = cursor.fetchall()
     cursor.close()
 
-    report = list()
-    for item in result:
-        report.append(item)
-    
-    print(report)
-    return {"report": report}
+    download_report = list()
+    for item in result2:
+        download_report.append(item)
+    return {"user_type": user_type, "download_report": download_report}
 
 # Authentication
 

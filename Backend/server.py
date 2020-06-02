@@ -29,7 +29,6 @@ def allowed_file(filename):
 def upload_file():
    if request.method == 'POST':
         decoded_data = token_decoder()
-        print(decoded_data)
 
         if 'picture' not in request.files:
             flash('No file part')
@@ -47,23 +46,43 @@ def upload_file():
             location = "../Frontend/my-app/public/img/" + file.filename
             img_url = "/img/" + file.filename
             file.save(location)
-        ask = request.json
-        image_name = ask['image_name']
-        image_category = ask['image_category']
-        contributor_id = decoded_data['id']
 
+        image_info = dict(request.form)
+        # image_info["image_name"][0]
+        image_name = str(image_info["image_name"][0])
+        image_category = str(image_info["image_category"][0])
+        contributor_id = decoded_data['id']
+        # print(image_name, image_category, contributor_id)
 
         cursor = mysql.connection.cursor()
         cursor.execute(
-            # """UPDATE users SET avatar = %s
-            #  WHERE id = %s""", (str(img_url), decoded_data["id"])
             """INSERT INTO images 
             (image_name, image_url, image_category, contributor_id) VALUES
              (%s, %s, %s, %s)""", (image_name, img_url, image_category, contributor_id)
         )
         mysql.connection.commit()
         cursor.close()
-        return {"id": decoded_data["id"], "img_url": img_url}
+        return {"message": "Image uploaded successfully", "id": decoded_data["id"], "img_url": img_url}
+
+# GET method for contributor
+@app.route('/download/report', methods = ['GET'])
+def downloadReport():
+    decoded_data = token_decoder()
+    id = decoded_data['id']
+    
+    cursor = mysql.connection.cursor()
+    cursor.execute(
+        """SELECT * FROM images WHERE contributor_id = %s""", (id,)
+    )
+    result = cursor.fetchall()
+    cursor.close()
+
+    report = list()
+    for item in result:
+        report.append(item)
+    
+    print(report)
+    return {"report": report}
 
 # Authentication
 

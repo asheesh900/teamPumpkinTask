@@ -78,7 +78,7 @@ def getRecords():
     result1 = cursor.fetchall()
     user_type = result1[0]['user_type']
 
-    if user_type is 'normal user':
+    if user_type == 'normal user':
         cursor.execute(query2)
         result2 = cursor.fetchall()
         cursor.close()

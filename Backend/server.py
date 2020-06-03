@@ -70,7 +70,11 @@ def getRecords():
     decoded_data = token_decoder()
     id = decoded_data['id']
     query1 = """SELECT user_type FROM users WHERE id = %s"""
-    query2 = """SELECT * FROM images"""
+    query2 = """SELECT images.id as id, image_name, image_url,
+     image_category, contributor_id, total_downloads,
+      users.name as contributor_name  FROM images
+       LEFT JOIN users ON users.id = images.contributor_id;
+"""
     query3 = """SELECT * FROM images WHERE contributor_id = %s"""
     
     cursor = mysql.connection.cursor()

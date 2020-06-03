@@ -9,7 +9,7 @@ class Dashboard extends Component {
             <div className = "container">
                 <h1 className = "text-center">Dashboard</h1>
                 <div className="row">
-                    <div className="col-3 bg-primary mr-2">
+                    <div className="col-3 bg-info mr-2">
                         <Sidebar />
                     </div>
                     <div className="col-8 bg-secondary">

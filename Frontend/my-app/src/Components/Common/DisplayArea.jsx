@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {getData} from '../../Redux/GetImages/Action'
+import Card from './Card'
 
 class DisplayArea extends Component {
 
@@ -15,8 +16,19 @@ class DisplayArea extends Component {
             <React.Fragment>
                 {
                     user_type === "normal user" ?
-                    (
+                    ( <React.Fragment>
                         <h1>Normal User</h1>
+                        <div className="row">
+                            {
+                                data.image_record && data.image_record.map(ele => (
+                                    <div className="col-3" key = {ele.id}>
+                                        <Card ele = {ele}/>
+                                    </div>
+
+                                ))
+                            }
+                        </div>
+                      </React.Fragment>
                     ):
                     (
                         <h2>Contributor</h2>

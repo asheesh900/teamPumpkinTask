@@ -2,7 +2,7 @@
 
 ### Technologies used
 
-### For Fron-end
+### For Front-end
 ```
 React.js
 Redux

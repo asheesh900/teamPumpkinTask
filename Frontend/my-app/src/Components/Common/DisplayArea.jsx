@@ -17,12 +17,12 @@ class DisplayArea extends Component {
                 {
                     user_type === "normal user" ?
                     ( <React.Fragment>
-                        <h1>Normal User</h1>
+                        {/* <h1>Normal User</h1> */}
                         <div className="row">
                             {
                                 data.image_record && data.image_record.map(ele => (
-                                    <div className="col-3" key = {ele.id}>
-                                        <Card ele = {ele}/>
+                                    <div className="col-6" key = {ele.id}>
+                                        <Card ele = {ele} componentDidMount = {this.componentDidMount} />
                                     </div>
 
                                 ))

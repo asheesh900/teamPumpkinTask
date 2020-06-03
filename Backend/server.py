@@ -101,6 +101,25 @@ def getRecords():
         download_report.append(item)
     return {"user_type": user_type, "download_report": download_report}
 
+# method to increase the downloads
+@app.route('/download/image', methods = ["POST"])
+def downloadImage():
+    ask = request.json
+    id = ask['id']
+
+    query1 = """SELECT total_downloads FROM images WHERE id = %s"""
+    query2 = """UPDATE images SET total_downloads = %s WHERE id = %s"""
+
+    cursor = mysql.connection.cursor()
+    cursor.execute(query1, (id,))
+    result = cursor.fetchall()
+    download_count = result[0]['total_downloads'] + 1
+
+    cursor.execute(query2, (download_count, id))
+    mysql.connection.commit()
+    cursor.close()
+    return {"message": "Download count updated successfully"}
+
 # Authentication
 
 @app.route('/auth/signup', methods = ['POST'])

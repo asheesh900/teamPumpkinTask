@@ -9,7 +9,8 @@ class DisplayArea extends Component {
         this.props.getData(token)
     }
     render() {
-        const {user_type} = this.props
+        const {user_type, data} = this.props
+        console.log(data)
         return (
             <React.Fragment>
                 {

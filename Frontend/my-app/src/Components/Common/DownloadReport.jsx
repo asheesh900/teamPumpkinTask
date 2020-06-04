@@ -1,11 +1,42 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class DownloadReport extends Component {
+class DownloadReport extends Component {
     render() {
+        const {data} = this.props
+        // data && console.log(data)
         return (
-            <div>
-                <h1>Download Report</h1>
-            </div>
+                <div className="container ">
+                    <h1>Download Report</h1>
+                        <table className="table table-dark">
+                        <thead>
+                          <tr>
+                            <th scope="col">Image Name</th>
+                            <th scope="col">Image Category</th>
+                            <th scope="col">Total Downloads</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                data && data.download_report.map(ele => (
+                                    <tr key = {ele.id}>
+                                        <td>{ele.image_name} </td>
+                                        <td>{ele.image_category} </td>
+                                        <td>{ele.total_downloads} </td>
+                                    </tr>
+                                ))
+                            }
+                          
+                        </tbody>
+                      </table>
+                </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    data: state.getImagesReducer.data
+})
+
+export default connect (mapStateToProps, null) (DownloadReport)
+

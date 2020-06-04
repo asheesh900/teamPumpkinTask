@@ -6,8 +6,8 @@ import Signup from '../Components/Auth/Signup'
 import Home from '../Components/Common/Home'
 import PrivateRoute from "./PrivateRoute"
 import Dashboard from '../Components/Common/Dashboard'
-// import FileUpload from '../Components/Common/FileUpload'
-// import Display from '../Components/Common/Display'
+import DownloadReport from '../Components/Common/DownloadReport'
+import UploadImage from '../Components/Common/UploadImage'
 
 export default class Routes extends Component {
     render() {
@@ -19,7 +19,8 @@ export default class Routes extends Component {
                     <Route path = "/signup" component = {Signup} />
                     <Route path = "/logIn" component = {LogIn} />
                     <PrivateRoute path = "/dashboard" component = {props => <Dashboard {...props} />} />
-                    {/* <PrivateRoute path = "/display" component = {props => <Display {...props} />} /> */}
+                    <PrivateRoute path = "/uploadImage" component = {props => <UploadImage {...props} />} />
+                    <PrivateRoute path = "/downloadReport" component = {props => <DownloadReport {...props} />} />
                 </Switch>
             </>
         )

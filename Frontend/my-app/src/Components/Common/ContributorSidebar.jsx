@@ -6,7 +6,7 @@ function ContributorSidebar() {
     <div>
       <span>
         <Link
-          className=" bg-none text-light justify-content-center align-items-center"
+          className=" bg-none text-light"
           to="/uploadImage"
         >
           Upload Image
@@ -15,7 +15,7 @@ function ContributorSidebar() {
       <hr />
       <span>
         <Link
-          className=" bg-none text-light justify-content-center align-items-center"
+          className=" bg-none text-light"
           to="/downloadReport"
         >
           Download Report

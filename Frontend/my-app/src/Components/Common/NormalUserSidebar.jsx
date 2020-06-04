@@ -5,13 +5,13 @@ const selectCategory = (e) => {
 }
 
 function NormalUserSidebar({ data }) {
-  
+   
   return (
     <React.Fragment>
       <h4>Category</h4>
-      {data.image_record &&
-        data.image_record.map((ele) => (
-          <div className="form-check" key={ele.id}>
+      {data.image_categories &&
+        data.image_categories.map((ele, i) => (
+          <div className="form-check" key={i}>
             <input
               onClick = {selectCategory}
               className="form-check-input"
@@ -20,7 +20,7 @@ function NormalUserSidebar({ data }) {
               id="exampleRadios1"
               value={ele.image_category}
             />
-            <label className="form-check-label" for="exampleRadios1">
+            <label className="form-check-label" htmlFor="exampleRadios1">
               {ele.image_category}
             </label>
           </div>

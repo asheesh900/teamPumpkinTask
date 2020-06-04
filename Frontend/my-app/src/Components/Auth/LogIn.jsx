@@ -8,8 +8,8 @@ class LogIn extends Component {
     super(props);
 
     this.state = {
-      email: "aps@gmail.com",
-      password: "aps123",
+      email: "rahul@gmail.com",
+      password: "rahul123",
     };
   }
 

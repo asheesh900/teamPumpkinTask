@@ -10,7 +10,7 @@ class DisplayArea extends Component {
   };
   render() {
     const { user_type, data } = this.props;
-    console.log(data);
+    // console.log(data);
     return (
       <React.Fragment>
         {user_type === "normal user" ? (

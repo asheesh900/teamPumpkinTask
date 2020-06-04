@@ -5,10 +5,10 @@ import {connect} from 'react-redux'
 
 class Sidebar extends Component {
     render() {
-        const {user_type, data} = this.props
+        const {user_type, data} = this.props        
         return (
             <React.Fragment>
-                {
+                { 
                     user_type === "normal user" ?
                     (<NormalUserSidebar data = {data} />) : 
                     (<ContributorSidebar data = {data} />)

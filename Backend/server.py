@@ -76,6 +76,7 @@ def getRecords():
        LEFT JOIN users ON users.id = images.contributor_id;
 """
     query3 = """SELECT * FROM images WHERE contributor_id = %s"""
+    query4 = """SELECT DISTINCT(image_category) FROM images"""
     
     cursor = mysql.connection.cursor()
     cursor.execute(query1, (id,))
@@ -85,12 +86,19 @@ def getRecords():
     if user_type == 'normal user':
         cursor.execute(query2)
         result2 = cursor.fetchall()
+
+        cursor.execute(query4)
+        result3 = cursor.fetchall()
         cursor.close()
 
         image_record = list()
+        image_categories = list()
         for item in result2:
             image_record.append(item)
-        return {"user_type": user_type, "image_record": image_record}
+
+        for item in result3:
+            image_categories.append(item)
+        return {"user_type": user_type, "image_categories": image_categories, "image_record": image_record}
 
     cursor.execute(query3, (id,))
     result2 = cursor.fetchall()

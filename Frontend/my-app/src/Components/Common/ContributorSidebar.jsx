@@ -5,19 +5,13 @@ function ContributorSidebar() {
   return (
     <div>
       <span>
-        <Link
-          className=" bg-none text-light"
-          to="/uploadImage"
-        >
+        <Link className=" bg-none text-light" to="/uploadImage">
           Upload Image
         </Link>
       </span>
       <hr />
       <span>
-        <Link
-          className=" bg-none text-light"
-          to="/downloadReport"
-        >
+        <Link className=" bg-none text-light" to="/downloadReport">
           Download Report
         </Link>
       </span>

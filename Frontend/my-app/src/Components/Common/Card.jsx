@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import axios from 'axios';
+import axios from "axios";
 
 Modal.setAppElement("#root");
 
 const downloadImage = async (imageId, componentDidMount) => {
   await axios
-    .post(`http://localhost:5000/download/image`, {"id": imageId})
-    .then(res => alert("Image downloaded successfully"))
-    componentDidMount()
+    .post(`http://localhost:5000/download/image`, { id: imageId })
+    .then((res) => alert("Image downloaded successfully"));
+  componentDidMount();
+};
 
-}
-
-export default function Card({ele, componentDidMount}) {
+export default function Card({ ele, componentDidMount }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
@@ -64,11 +63,21 @@ export default function Card({ele, componentDidMount}) {
             </h5>
             <p>Image Name: {ele.image_name} </p>
             <p>Total Downloads: {ele.total_downloads} </p>
-            <button onClick = {() => downloadImage(ele.id, componentDidMount)} className="btn btn-warning">Download</button>
+            <button
+              onClick={() => downloadImage(ele.id, componentDidMount)}
+              className="btn btn-warning"
+            >
+              Download
+            </button>
           </div>
         </div>
         <div>
-          <button className = "btn btn-danger" onClick={() => setModalIsOpen(false)}>Close</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => setModalIsOpen(false)}
+          >
+            Close
+          </button>
         </div>
       </Modal>
     </React.Fragment>

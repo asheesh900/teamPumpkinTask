@@ -26,7 +26,7 @@ def allowed_file(filename):
 
 # Upload an image and save its information to the database
 @app.route('/uploader', methods = ['POST'])
-def upload_file():
+def uploadImage():
    if request.method == 'POST':
         decoded_data = token_decoder()
 

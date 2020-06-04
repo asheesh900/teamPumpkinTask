@@ -7,7 +7,8 @@ Modal.setAppElement("#root");
 const downloadImage = async (imageId, componentDidMount) => {
   await axios
     .post(`http://localhost:5000/download/image`, { id: imageId })
-    .then((res) => alert("Image downloaded successfully"));
+    .then((res) => alert("Image downloaded successfully"))
+    .catch(err => alert(err))
   componentDidMount();
 };
 

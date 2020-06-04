@@ -41,7 +41,9 @@ export const uploadImage = (data, token) => {
                 alert(res.data.message)
                 dispatch(postSuccess(res.data))
             })
-            .catch(err => dispatch(postFailure(err)))
+            .catch(err => {
+                alert(err)
+                dispatch(postFailure(err))})
 
     }
 }

@@ -41,7 +41,9 @@ export const getData = token => {
                 // console.log(res.data)
                 dispatch(getSuccess(res.data))
             })
-            .catch(err => dispatch(getFailure(err)))
+            .catch(err => {
+                alert(err)
+                dispatch(getFailure(err))})
 
     }
 }

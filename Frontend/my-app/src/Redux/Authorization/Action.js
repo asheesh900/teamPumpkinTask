@@ -89,7 +89,9 @@ export const authenticateUser = (credentials) => {
                 console.log(res.data)
                 dispatch(authorizeUserSuccess(res.data))
             })
-            .catch(err => dispatch(authorizeUserFailure(err)))
+            .catch(err => {
+                alert(err)
+                dispatch(authorizeUserFailure(err))})
     }
 }
 

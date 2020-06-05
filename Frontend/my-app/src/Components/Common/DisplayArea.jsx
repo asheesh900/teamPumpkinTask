@@ -9,8 +9,7 @@ class DisplayArea extends Component {
     this.props.getData(token);
   };
   render() {
-    const { user_type, data } = this.props;
-    // console.log(data);
+    const { user_type, data, displayArr } = this.props;
     return (
       <React.Fragment>
         {user_type === "normal user" ? (
@@ -18,7 +17,7 @@ class DisplayArea extends Component {
             {/* <h1>Normal User</h1> */}
             <div className="row">
               {data.image_record &&
-                data.image_record.map((ele) => (
+                displayArr.map((ele) => (
                   <div className="col-6" key={ele.id}>
                     <Card
                       ele={ele}
@@ -42,6 +41,7 @@ const mapStateToProps = (state) => ({
   isRequest: state.getImagesReducer.isRequest,
   isData: state.getImagesReducer.isData,
   data: state.getImagesReducer.data,
+  displayArr: state.getImagesReducer.displayArr,
 });
 
 const mapDispatchToProps = (dispatch) => ({

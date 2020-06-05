@@ -47,3 +47,16 @@ export const getData = token => {
 
     }
 }
+
+// filter category
+
+// action type
+export const FILTER_CATEGORY = "FILTER_CATEGORY";
+
+// action creator
+export const filterCategory = (category) => {
+    return {
+        type: FILTER_CATEGORY,
+        category: category
+    }
+}
